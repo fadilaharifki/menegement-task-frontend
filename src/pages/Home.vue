@@ -245,11 +245,13 @@
                 @change="handlePriorityChange(task)"
               >
                 <option value=""></option>
-                <option value="Critical">Critical</option>
-                <option value="High">High</option>
-                <option value="Medium">Medium</option>
-                <option value="Low">Low</option>
-                <option value="Best Effort">Best Effort</option>
+                <option
+                  v-for="priority in masterStore.priority"
+                  :key="priority"
+                  :value="priority"
+                >
+                  {{ priorityEnum[priority] }}
+                </option>
               </select>
             </td>
             <td>
@@ -260,11 +262,13 @@
                 @change="handleTypeChange(task)"
               >
                 <option value=""></option>
-                <option value="Feature Enhancements">
-                  Feature Enhancements
+                <option
+                  v-for="type in masterStore.type"
+                  :key="type"
+                  :value="type"
+                >
+                  {{ typeEnum[type] }}
                 </option>
-                <option value="Other">Other</option>
-                <option value="Bug">Bug</option>
               </select>
             </td>
             <td>
@@ -353,6 +357,8 @@ import {
   getPriorityClass,
   statusEnum,
   getTypeClass,
+  priorityEnum,
+  typeEnum,
 } from "@/utils/ClassFunction";
 
 const toast = useToast();
@@ -395,6 +401,8 @@ const handelDelete = (task: Task) => {
 
 onMounted(() => {
   masterStore.getStatuses();
+  masterStore.getPriority();
+  masterStore.getType();
   if (taskStore.tasks.length === 0) {
     taskStore.fetchTask();
   }

@@ -7,6 +7,20 @@ export const statusEnum = Object.freeze({
   STUCK: "Stuck",
 });
 
+export const priorityEnum = Object.freeze({
+  CRITICAL: "Critical",
+  HIGH: "High",
+  MEDIUM: "Medium",
+  LOW: "Low",
+  BEST_EFFORT: "Best effort",
+});
+
+export const typeEnum = Object.freeze({
+  FUTURE: "Future",
+  BUG: "Bug",
+  OTHER: "Other",
+});
+
 export const getStatusClass = (status: string) => {
   switch (status) {
     case "WAITING_FOR_REVIEW":
@@ -28,15 +42,15 @@ export const getStatusClass = (status: string) => {
 
 export const getPriorityClass = (priority: string) => {
   switch (priority) {
-    case "Critical":
+    case "CRITICAL":
       return "bg-red-700";
-    case "High":
+    case "HIGH":
       return "bg-orange-600";
-    case "Medium":
+    case "MEDIUM":
       return "bg-yellow-500";
-    case "Low":
+    case "LOW":
       return "bg-green-500";
-    case "Best Effort":
+    case "BEST_EFFORT":
       return "bg-slate-400";
     default:
       return "bg-zinc-800";
@@ -45,11 +59,11 @@ export const getPriorityClass = (priority: string) => {
 
 export const getTypeClass = (type: string) => {
   switch (type) {
-    case "Feature Enhancements":
+    case "FUTURE":
       return "bg-purple-700";
-    case "Bug":
+    case "BUG":
       return "bg-red-700";
-    case "Other":
+    case "OTHER":
       return "bg-blue-700";
     default:
       return "bg-zinc-800";
